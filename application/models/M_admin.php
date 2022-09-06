@@ -3,7 +3,12 @@ class M_admin extends CI_Model
 {
  public function getAdmin()
  {
-  return $this->db->get('tbl_admin')->row_array();
+  // return $this->db->get('tbl_admin')->row_array();
+  $this->db->select('*');
+  $this->db->from('user');
+  $this->db->join('tbl_admin', 'tbl_admin.id_user = user.id_user');
+  $query = $this->db->get()->row_array();
+  return $query;
  }
 
  public function updateProfiel($foto = null)

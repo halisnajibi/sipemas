@@ -37,8 +37,8 @@
           <h5 class="card-title text-center pb-0 fs-4">Login</h5>
           <p class="text-center small">Masukan email & password anda</p>
          </div>
-         <?= $this->session->flashdata('pesan') ?>
          <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
+         <div class="flash-data-gagal" data-gagallogin="<?= $this->session->flashdata('gagallogin') ?>"></div>
          <form class="row g-3" method="POST">
           <div class="col-12">
            <label for="yourUsername" class="form-label">Email</label>
@@ -70,6 +70,7 @@
   </div>
  </main>
  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+ <script src="<?= base_url('vendor/package/') ?>js/jquery.js"></script>
  <script src="<?= base_url('public/template/') ?>assets/js/apexcharts.min.js"></script>
  <script src="<?= base_url('public/template/') ?>assets/js/bootstrap.bundle.min.js"></script>
  <script src="<?= base_url('public/template/') ?>assets/js/chart.min.js"></script>
@@ -80,8 +81,8 @@
  <script src="<?= base_url('public/template/') ?>assets/js/validate.js"></script>
  <script src="<?= base_url('public/template/') ?>assets/js/main.js"></script>
  <script src="<?= base_url('vendor/package/') ?>sweetalert2/sweetalert2.all.min.js"></script>
- <script src="<?= base_url('vendor/package/') ?>js/jquery.js"></script>
  <script src="<?= base_url('vendor/package/') ?>js/me.js"></script>
+ <script src="<?= base_url('vendor/package/') ?>js/errorlogin.js"></script>
 </body>
 
 </html>

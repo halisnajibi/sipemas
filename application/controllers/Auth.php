@@ -47,23 +47,17 @@ class Auth extends CI_Controller
           }
         } else {
           // password salah
-          $this->session->set_flashdata('pesan', ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
- <i class="bi bi-exclamation-octagon me-1"></i>
-Gagal login!password salah!! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+          $this->session->set_flashdata('gagallogin', 'passwords');
           redirect('auth');
         }
       } else {
         // akun tidak aktif
-        $this->session->set_flashdata('pesan', ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
- <i class="bi bi-exclamation-octagon me-1"></i>
-Gagal login!akun belum aktif!! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+        $this->session->set_flashdata('gagallogin', 'belumaktif');
         redirect('auth');
       }
     } else {
       // email tidak terdaftar
-      $this->session->set_flashdata('pesan', ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
- <i class="bi bi-exclamation-octagon me-1"></i>
-Gagal login!email tidak terdaftar!! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+      $this->session->set_flashdata('gagallogin', 'emailinvalid');
       redirect('auth');
     }
   }
