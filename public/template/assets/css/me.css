@@ -1,0 +1,45 @@
+.btn-primary,
+.bg-primary {
+	background-color: #1b4689 !important;
+	border: #1b4689 !important;
+}
+
+.btn-primary:hover {
+	background-color: #3f557c !important;
+	border: #3f557c !important;
+}
+
+.btn-danger {
+	background-color: rgb(161, 52, 52) !important;
+	border: rgb(161, 52, 52) !important;
+}
+
+.btn-danger:hover {
+	background-color: rgb(165, 75, 75) !important;
+	border: rgb(165, 75, 75) !important;
+}
+
+.btn-success,
+.bg-success {
+	background-color: rgb(25, 116, 25) !important;
+	border: rgb(25, 116, 25) !important;
+}
+
+.btn-success:hover {
+	background-color: rgb(48, 117, 48) !important;
+	border: rgb(48, 117, 48) !important;
+}
+
+/* handphone */
+@media (max-width: 576px) {
+	.logo-login {
+		display: none;
+	}
+}
+
+/* tablet */
+@media (max-width: 835px) {
+	.logo-login {
+		width: 250px;
+	}
+}
