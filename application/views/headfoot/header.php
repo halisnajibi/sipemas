@@ -135,18 +135,31 @@
         <li class="nav-item dropdown pe-3">
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown"> <img src="<?= base_url('public/profiel/' . $profiel['foto']) ?>" alt="Profile" class="rounded-circle"> <span class="d-none d-md-block dropdown-toggle ps-2"><?= ucwords($profiel['nama'])  ?></span> </a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6><?= ucwords($profiel['nama'])  ?></h6>
-              <span><?= ucfirst($level)  ?></span>
-            </li>
-            <li>
+            <?php if ($profiel['level'] == 'admin') : ?>
+              <li class="dropdown-header">
+                <h6><?= ucwords($profiel['nama'])  ?></h6>
+                <span><?= ucfirst($level)  ?></span>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li> <a class="dropdown-item d-flex align-items-center" href="<?= base_url('admin/profiel') ?>"> <i class="bi bi-person"></i> <span>Profile</span> </a>
+              </li>
               <hr class="dropdown-divider">
-            </li>
-            <li> <a class="dropdown-item d-flex align-items-center" href="<?= base_url('admin/profiel') ?>"> <i class="bi bi-person"></i> <span>Profile</span> </a></li>
-
-            <hr class="dropdown-divider">
-
-            <li> <a class="dropdown-item d-flex align-items-center" href="<?= base_url('auth/logout') ?>"> <i class="bi bi-box-arrow-right"></i> <span>Sign Out</span> </a></li>
+              <li> <a class="dropdown-item d-flex align-items-center" href="<?= base_url('auth/logout') ?>"> <i class="bi bi-box-arrow-right"></i> <span>Sign Out</span> </a></li>
+            <?php elseif ($profiel['level'] == 'warga') : ?>
+              <li class="dropdown-header">
+                <h6><?= ucwords($profiel['nama'])  ?></h6>
+                <span><?= ucfirst($profiel['level'])  ?></span>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li> <a class="dropdown-item d-flex align-items-center" href="<?= base_url('warga/profiel') ?>"> <i class="bi bi-person"></i> <span>Profile</span> </a>
+              </li>
+              <hr class="dropdown-divider">
+              <li> <a class="dropdown-item d-flex align-items-center" href="<?= base_url('auth/logout') ?>"> <i class="bi bi-box-arrow-right"></i> <span>Sign Out</span> </a></li>
+            <?php endif; ?>
           </ul>
         </li>
       </ul>
@@ -155,22 +168,42 @@
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item"> <a class="nav-link " href=""> <i class="bi bi-grid"></i> <span>Dashboard</span> </a></li>
-      <li class="nav-heading">Master</li>
-      <li class="nav-item">
+      <?php if ($profiel['level'] == 'admin') : ?>
+        <li class="nav-heading">Master</li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-menu-button-wide"></i><span>Master Data</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+          <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li> <a href="components-alerts.html"> <i class="bi bi-circle"></i><span>Alerts</span> </a></li>
+            <li> <a href="components-accordion.html"> <i class="bi bi-circle"></i><span>Accordion</span> </a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-journal-text"></i><span>Surat</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li> <a href="forms-elements.html"> <i class="bi bi-circle"></i><span>Form Elements</span> </a></li>
+            <li> <a href="forms-layouts.html"> <i class="bi bi-circle"></i><span>Form Layouts</span> </a></li>
+            <li> <a href="forms-editors.html"> <i class="bi bi-circle"></i><span>Form Editors</span> </a></li>
+            <li> <a href="forms-validation.html"> <i class="bi bi-circle"></i><span>Form Validation</span> </a></li>
+          </ul>
+        </li>
+      <?php elseif ($profiel['level'] == 'warga') : ?>
+        <li class="nav-item">
+        <li class="nav-heading">warga</li>
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-menu-button-wide"></i><span>Master Data</span><i class="bi bi-chevron-down ms-auto"></i> </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li> <a href="components-alerts.html"> <i class="bi bi-circle"></i><span>Alerts</span> </a></li>
           <li> <a href="components-accordion.html"> <i class="bi bi-circle"></i><span>Accordion</span> </a></li>
         </ul>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-journal-text"></i><span>Surat</span><i class="bi bi-chevron-down ms-auto"></i> </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li> <a href="forms-elements.html"> <i class="bi bi-circle"></i><span>Form Elements</span> </a></li>
-          <li> <a href="forms-layouts.html"> <i class="bi bi-circle"></i><span>Form Layouts</span> </a></li>
-          <li> <a href="forms-editors.html"> <i class="bi bi-circle"></i><span>Form Editors</span> </a></li>
-          <li> <a href="forms-validation.html"> <i class="bi bi-circle"></i><span>Form Validation</span> </a></li>
-        </ul>
-      </li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-journal-text"></i><span>Surat</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li> <a href="forms-elements.html"> <i class="bi bi-circle"></i><span>Form Elements</span> </a></li>
+            <li> <a href="forms-layouts.html"> <i class="bi bi-circle"></i><span>Form Layouts</span> </a></li>
+            <li> <a href="forms-editors.html"> <i class="bi bi-circle"></i><span>Form Editors</span> </a></li>
+            <li> <a href="forms-validation.html"> <i class="bi bi-circle"></i><span>Form Validation</span> </a></li>
+          </ul>
+        </li>
+      <?php endif; ?>
     </ul>
   </aside>
